@@ -2,3 +2,12 @@
 # yarn lockfile v1
 
 
+osx-temperature-sensor@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/osx-temperature-sensor/-/osx-temperature-sensor-1.0.7.tgz#5bbbd28bf86dc1d5391cfa7f067f0308807ddae9"
+  integrity sha512-5hijMYtDVmcrR/LTZ8702SZOO2TVt5868KeraD02WyEI+3/YZJI4Cl9fvzCOc5vzizGGjvsfaCKZOKHF+RJ0wA==
+
+systeminformation@^5.6.7:
+  version "5.6.7"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.6.7.tgz#f56bbc89cac2de4bcb085b96a93b9d627bd6aba8"
+  integrity sha512-NTgaL6AsRoXKbfZs6t+BkCUwLZjqIiT4IwqGUV2f7PgvDz8359HzOF0xYgDlTHCBR2GeWhFQAfo2wmoYTpz/og==

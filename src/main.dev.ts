@@ -24,6 +24,11 @@ export default class AppUpdater {
   }
 }
 
+// Required to read cpu temperature on Mac with systeminformation
+// https://github.com/sebhildebrandt/systeminformation#macos---temperature-sensor
+// See https://www.electronjs.org/docs/api/app#appallowrendererprocessreuse
+app.allowRendererProcessReuse = false;
+
 let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {

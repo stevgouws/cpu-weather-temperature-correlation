@@ -8543,6 +8543,11 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+osx-temperature-sensor@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/osx-temperature-sensor/-/osx-temperature-sensor-1.0.7.tgz#5bbbd28bf86dc1d5391cfa7f067f0308807ddae9"
+  integrity sha512-5hijMYtDVmcrR/LTZ8702SZOO2TVt5868KeraD02WyEI+3/YZJI4Cl9fvzCOc5vzizGGjvsfaCKZOKHF+RJ0wA==
+
 p-cancelable@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/p-cancelable/-/p-cancelable-1.1.0.tgz#d078d15a3af409220c886f1d9a0ca2e441ab26cc"
