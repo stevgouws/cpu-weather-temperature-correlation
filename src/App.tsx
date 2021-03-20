@@ -52,10 +52,11 @@ const Content = () => {
   const [outsideTemperature, setOutsideTemperature] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       getCpuTemperature().then(setCpuTemperature).catch(console.error);
       getOutsideTemperature().then(setOutsideTemperature).catch(console.error);
-    }, 10000);
+    }, 5000);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
