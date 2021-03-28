@@ -26,8 +26,11 @@ body {
   margin: 20px 0;
 }
 
-th,
-td {
+main {
+  display: flex;
+}
+
+section {
   font-size: 2rem;
   padding: 0 1rem;
 }

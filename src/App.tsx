@@ -3,12 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import propTypes from 'prop-types';
 import './App.global.css';
+import { clearInterval } from 'timers';
 
 async function getCpuTemperature() {
-  const cpuTemperatureDetails = await systemInformation
-    .cpuTemperature()
-    .catch(console.error);
-  if (!cpuTemperatureDetails) return 0;
+  const cpuTemperatureDetails = await systemInformation.cpuTemperature();
   return cpuTemperatureDetails.cores[0];
 }
 
@@ -16,28 +14,21 @@ async function getOutsideTemperature() {
   const response: any = await fetch(
     'https://api.openweathermap.org/data/2.5/weather?lat=51.504560&lon=-0.212970&units=metric&appid=9e1968833a7cced162c050f17816cbdc'
   );
-  if (!response.ok) throw response;
   const json = await response.json();
-  return json.main.temp;
+  const temperature = json?.main?.temp;
+  if (!temperature) {
+    throw new Error(
+      'Weather response did not include temperature, please try again later'
+    );
+  }
+  return temperature;
 }
 
 export function Main({ cpuTemperature, outsideTemperature }: any) {
   return (
     <main>
-      <table>
-        <thead>
-          <tr>
-            <th>CPU temperature</th>
-            <th>Outside temperature</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{cpuTemperature}</td>
-            <td>{outsideTemperature}</td>
-          </tr>
-        </tbody>
-      </table>
+      <section>CPU temperature: {cpuTemperature}</section>
+      <section>Outside temperature: {outsideTemperature}</section>
     </main>
   );
 }
@@ -50,14 +41,18 @@ Main.propTypes = {
 const Content = () => {
   const [cpuTemperature, setCpuTemperature] = useState(0);
   const [outsideTemperature, setOutsideTemperature] = useState(0);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      getCpuTemperature().then(setCpuTemperature).catch(console.error);
-      getOutsideTemperature().then(setOutsideTemperature).catch(console.error);
+      getCpuTemperature().then(setCpuTemperature).catch(setError);
+      getOutsideTemperature().then(setOutsideTemperature).catch(setError);
     }, 5000);
     return () => clearInterval(intervalId);
   }, []);
+
+  // throw new Error('No Data');
+  if (error) throw error;
 
   return (
     <Main
